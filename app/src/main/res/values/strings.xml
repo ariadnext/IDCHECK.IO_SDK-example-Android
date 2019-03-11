@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">IDCHECK.IO Example</string>
+    <string name="error_init">An error occurred during SDK initialization.</string>
+    <string name="error_start">An error occurred during SDK launch.</string>
+    <string name="error_not_initialized">SDK is not activated. Please check your network connection.</string>
+        <string name="error_arch_support">Sorry, it seems that your device architecture is not compatible with our version.</string>
+        <string name="error_permissions">You have to accept all our permissions to use our application.</string>
+</resources>

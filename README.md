@@ -1,29 +1,29 @@
-# IDCHECK.IO_SDK-example-Android
+# IDCheck.io SDK Sample - MobileSDK v5 - Android #
 
-To get this sample running, please follow the instructions :
+## Setup ##
 
- 1. Integrate the *IDCheck.io SDK* library to the project : move the `smartsdk-release.aar` file to the `app/libs` folder.
+You need credentials to acces ARIADNEXT's Nexus hosting the SDK library.
+Once retrieved, update the file `gradle.properties` at the root of the project :
 
- 2. Add your SDK License to the project : move the `license.axt` file to the `app/src/main/assets` folder
+```gradle
+# TODO : add here your AriadNext Nexus user name to retrieve SDK dependency
+AXTNexusUser = YOUR_USERNAME
+AXTNexusPassword = YOUR_PASSWORD
+```
 
- 3. Eventually add your keystore to the build process : <br/>
-    Add the folowing to your `app/build.gradle`file :
-    ```
-    android {
-      ...
-      signingConfigs {
-          debug {
-              storeFile file("<path_to_your_keystore>.jks")
-              storePassword "<password>"
-              keyAlias "<key>"
-              keyPassword "<password>"
-          }
-          release {
-              storeFile file("<path_to_your_keystore>.jks")
-              storePassword "<password>"
-              keyAlias "<key>"
-              keyPassword "<password>"
-          }
-      }
-    }
-    ```
+## Add your SDK's licence
+
+To be able to use the sample, please :
+
+- Add your license file in the `./app/src/main/assets/` folder of this project
+- Name it "**licence.axt**"
+
+## Run the project
+
+Import the project in Android Studio, or build the application using this command : 
+
+```shell
+./gradlew assembleDebug
+```
+
+You are now good to go ! 😎

@@ -1,36 +1,65 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "com.ariadnext.idcheckioexample"
-        minSdkVersion 16
-        targetSdkVersion 27
+        applicationId "com.ariadnext.idcheckiosdk.sample"
+        minSdkVersion 19
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // You have to enable Multidex support to integrate the IDCheck.io SDK
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    dexOptions {
-        javaMaxHeapSize "4g"
+
+    // Add this if you encounter issues with conflicting library licences files
+    packagingOptions {
+        pickFirst 'META-INF/LICENSE'
+        pickFirst 'META-INF/DEPENDENCIES'
+        pickFirst 'META-INF/license.txt'
+        pickFirst 'META-INF/notice.txt'
+    }
+
+}
+
+repositories {
+    mavenLocal()
+    // AriadNext External Nexus for SDK dependency
+    maven {
+        credentials {
+            username = "$AXTNexusUser"
+            password = "$AXTNexusPassword"
+        }
+        url "https://repoman.rennes.ariadnext.com/content/repositories/com.ariadnext.idcheckio/"
     }
 }
 
-dependencies {
-    implementation name: 'smartsdk-release', ext: 'aar'
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'com.android.support:design:27.0.2'
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    implementation 'au.com.datasymphony:EasyFlow:1.3.1'
-    implementation 'com.android.support:multidex:1.0.2'
-    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // IDCheck.io SDK
+    implementation('com.ariadnext.android.idcheckio:sdk:5.1.3@aar') {
+        transitive = true
+    }
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

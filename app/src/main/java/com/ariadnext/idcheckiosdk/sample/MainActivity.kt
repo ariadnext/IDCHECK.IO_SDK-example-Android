@@ -15,6 +15,7 @@ import com.ariadnext.idcheckio.sdk.bean.DocumentType
 import com.ariadnext.idcheckio.sdk.component.Idcheckio
 import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
 import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioCallback
+import com.ariadnext.idcheckio.sdk.interfaces.InitStatus
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -43,6 +44,11 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
         // Prepare the SDK (pre-load assets and activate licence)
         setupSDK()
         setupUI()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkPermissions()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -82,17 +88,7 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
                 // Check if all required permissions are granted
                 val permissionCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 val permissionRecordAudio = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-                if (permissionCamera == PackageManager.PERMISSION_GRANTED && permissionRecordAudio == PackageManager.PERMISSION_GRANTED) {
-                    activateSDK()
-                } else {
-                    Toast.makeText(this, "Please grant all permissions to SDK", Toast.LENGTH_LONG).show()
-                }
-            }
-            else -> {
-                if (Idcheckio.verifyPermissions(requestCode, permissions, grantResults)) {
-                    activateSDK()
-                } else {
-                    Log.w(TAG, "VerifyPermissions failed")
+                if (!(permissionCamera == PackageManager.PERMISSION_GRANTED && permissionRecordAudio == PackageManager.PERMISSION_GRANTED)) {
                     Toast.makeText(this, "Please grant all permissions to SDK", Toast.LENGTH_LONG).show()
                 }
             }
@@ -123,7 +119,6 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
     private fun setupSDK() {
         // Pre load IDCheck.io SDK assets (do it at the start of your application)
         Idcheckio.preload(this, true)
-        checkPermissions()
     }
 
     private fun checkPermissions() {
@@ -138,15 +133,19 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
         if (permissionMicrophone != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO)
         }
-        // Ask user for missing permissions
+        // Ask user for missing permissions if needed
         if (listPermissionsNeeded.isNotEmpty()) {
             ActivityCompat.requestPermissions(this, listPermissionsNeeded.toTypedArray(), PERMISSION_REQUEST_CODE)
+        } else {
+            activateSDK()
         }
     }
 
     private fun activateSDK() {
-        // Activate SDK (call this when the users enters the onboarding sequence and you need the SDK for scanning)
-        Idcheckio.activate("licence", this, this, true)
+        if (Idcheckio.initStatus != InitStatus.SUCCESS) {
+            // Activate SDK (call this when the users enters the onboarding sequence and you need the SDK for scanning)
+            Idcheckio.activate("licence", this, this, true)
+        }
     }
 
     private fun updateUI() {

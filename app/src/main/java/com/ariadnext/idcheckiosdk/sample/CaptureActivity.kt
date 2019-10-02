@@ -135,8 +135,8 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
     }
 
     private fun setupIDCapture() {
-        // Display the cropped picture
-        sdk_view.addParameters(EnumParameters.CONFIRM_TYPE, ConfirmationType.CROPPED_PICTURE)
+        // Display Extracted Data or else cropped picture
+        sdk_view.addParameters(EnumParameters.CONFIRM_TYPE, ConfirmationType.DATA_OR_PICTURE)
         // Data extraction from the ID Document
         // First side must contain a valid codeline, plus the SDK will try to extract a face picture
         sdk_view.addParameters(
@@ -153,7 +153,7 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
         sdk_view.addParameters(EnumParameters.SCAN_BOTH_SIDES, Forceable.ENABLED)
 
         // Display manual capture button after 5s if no document was found
-        sdk_view.addExtraParameters(EnumExtraParameters.MANUAL_BUTTON_TIMER, 30)
+        sdk_view.addExtraParameters(EnumExtraParameters.MANUAL_BUTTON_TIMER, 5)
     }
 
     private fun startScanning() {

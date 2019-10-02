@@ -178,6 +178,7 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
                 document.fields[Document.IdentityDocument.Field.firstNames]?.let {
                     name += "${it.value} "
                 }
+                Log.i(CaptureActivity::class.java.simpleName, "onResult : ${document.toJson()}")
                 // Return the extracted gender/firstname/name data
                 resultIntent.putExtra(PARAM_RESULT_NAME_KEY, name)
             }

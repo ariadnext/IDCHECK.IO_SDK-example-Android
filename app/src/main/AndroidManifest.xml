@@ -22,7 +22,8 @@
         <activity
             android:name=".CaptureActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen" />
     </application>
 
 </manifest>

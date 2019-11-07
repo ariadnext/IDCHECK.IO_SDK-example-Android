@@ -186,6 +186,8 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
             captureIntent.putExtra(CaptureActivity.PARAM_TASK_KEY, referenceTaskUid)
         }
 
+        Log.d(MainActivity::class.java.simpleName, "prepareCapture -> ${captureIntent.toUri(0)}")
+
         return captureIntent
     }
 

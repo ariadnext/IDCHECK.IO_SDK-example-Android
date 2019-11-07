@@ -21,7 +21,7 @@
         <!-- Here we lock orientation for the capture activity -->
         <activity
             android:name=".CaptureActivity"
-            android:configChanges="keyboardHidden|orientation"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullScreen" />
     </application>

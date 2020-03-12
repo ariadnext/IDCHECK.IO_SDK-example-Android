@@ -138,6 +138,7 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
     private fun setupLivenessCapture(idcheckioView: IdcheckioView.Builder) {
         // Portrait orientation is recommended for Liveness
         idcheckioView.orientation(Orientation.PORTRAIT)
+        idcheckioView.extraParameter(EnumExtraParameters.FALCON_WSS, FalconEnvironment.DEMO.url)
 
         // Handle liveness token for offline mode
         if (!isOnline) {
@@ -175,7 +176,7 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
 
     private fun startScanning() {
         if (isOnline) {
-            sdkComponent.startOnline("licence", cisContext)
+            sdkComponent.startOnline(cisContext)
         } else {
             sdkComponent.start()
         }

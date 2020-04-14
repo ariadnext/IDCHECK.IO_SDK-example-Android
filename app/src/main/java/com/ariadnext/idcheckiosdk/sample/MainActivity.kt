@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.ariadnext.idcheckio.sdk.bean.CISContext
 import com.ariadnext.idcheckio.sdk.bean.DocumentType
+import com.ariadnext.idcheckio.sdk.bean.SdkEnvironment
 import com.ariadnext.idcheckio.sdk.component.Idcheckio
 import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
 import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioCallback
@@ -144,7 +145,7 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
     private fun activateSDK() {
         if (Idcheckio.initStatus != InitStatus.SUCCESS) {
             // Activate SDK (call this when the users enters the onboarding sequence and you need the SDK for scanning)
-            Idcheckio.activate("licence", this, this, true)
+            Idcheckio.activate("licence", this, this, true, environment = SdkEnvironment.DEMO)
         }
     }
 

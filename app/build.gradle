@@ -54,7 +54,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     // IDCheck.io SDK
-    implementation("com.ariadnext.android.idcheckio:sdk:$idcheckio_sdk_version-demo@aar") {
+    implementation("com.ariadnext.android.idcheckio:sdk:$idcheckio_sdk_version@aar") {
         transitive = true
     }
 

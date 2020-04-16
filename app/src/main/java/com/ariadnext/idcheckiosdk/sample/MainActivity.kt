@@ -146,6 +146,8 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
         if (Idcheckio.initStatus != InitStatus.SUCCESS) {
             // Activate SDK (call this when the users enters the onboarding sequence and you need the SDK for scanning)
             Idcheckio.activate("licence", this, this, true, environment = SdkEnvironment.DEMO)
+        } else {
+            btn_main_scan.isEnabled = true
         }
     }
 

@@ -8,7 +8,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.ariadnext.idcheckiosdk.sample"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -16,9 +16,21 @@ android {
         // You have to enable Multidex support to integrate the IDCheck.io SDK
         multiDexEnabled true
     }
+
+    signingConfigs {
+        release {
+            storeFile file("../mykeystore.keystore")
+            storePassword "password"
+            keyAlias "key"
+            keyPassword "password"
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -38,8 +50,8 @@ repositories {
     // AriadNext External Nexus for SDK dependency
     maven {
         credentials {
-            username = "$AXTNexusUser"
-            password = "$AXTNexusPassword"
+            username 'YOUR_USER_NAME'
+            password 'YOUR_PASSWORD'
         }
         url "https://repoman.rennes.ariadnext.com/content/repositories/com.ariadnext.idcheckio/"
     }

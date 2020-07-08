@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ariadnext.idcheckio.sdk.bean.*
 import com.ariadnext.idcheckio.sdk.component.IdcheckioView
 import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
+import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioError
 import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioInteraction
 import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioInteractionInterface
 import com.ariadnext.idcheckio.sdk.interfaces.result.Document
@@ -20,12 +21,15 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
     companion object {
         // Handling Doctype value (DocumentType enum value)
         const val PARAM_DOCTYPE_KEY = "doctype"
+
         // Handling Online mode (boolean value)
         const val PARAM_ONLINE_KEY = "online"
+
         // Handling CISContext values for online Liveness
         const val PARAM_FOLDER_KEY = "folder"
         const val PARAM_DOCUMENT_KEY = "documentUid"
         const val PARAM_TASK_KEY = "taskUid"
+
         // Handling liveness token for offline mode (String value)
         const val PARAM_LIVENESS_TOKEN_KEY = "token"
 
@@ -40,7 +44,8 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
     private var isOnline: Boolean = false
     private var livenessToken: String? = null
     private lateinit var cisContext: CISContext
-    private lateinit var sdkComponent: IdcheckioView
+
+    private var captureStarted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,16 +69,24 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
 
     override fun onResume() {
         super.onResume()
-        // Setup SDK
-        sdkComponent = setupCapture()
-        // Attach SDK to layout
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.capture_layout, sdkComponent)
-            .commit()
-        // Start Capture
-        startScanning()
-    }
+        if (!captureStarted) {
+            captureStarted = true
 
+            // Setup SDK
+            val sdkComponent = setupCapture()
+            // Attach SDK to layout
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.capture_layout, sdkComponent)
+                .commit()
+
+            // Start Capture
+            if (isOnline) {
+                sdkComponent.startOnline(cisContext)
+            } else {
+                sdkComponent.start()
+            }
+        }
+    }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // INTERFACE : IdcheckioInteractionInterface
@@ -89,13 +102,20 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
             // Here we are notified in case of an error to inform the final user
             IdcheckioInteraction.ERROR -> {
                 (data as? ErrorMsg)?.let { errorMsg ->
-                    Toast.makeText(this, "SDK ERROR : $errorMsg", Toast.LENGTH_LONG)
-                        .show()
-                    finish()
-                    Log.e(
-                        CaptureActivity::class.java.simpleName,
-                        "IdcheckioInteraction.ERROR: $errorMsg \n$data"
-                    )
+                    when (errorMsg.type) {
+                        IdcheckioError.NO_CHIP_ON_DOCUMENT -> {
+                            // Do nothing, this is not an SDK error
+                        }
+                        else -> {
+                            Toast.makeText(this, "SDK ERROR : $errorMsg", Toast.LENGTH_LONG)
+                                .show()
+                            finish()
+                            Log.e(
+                                CaptureActivity::class.java.simpleName,
+                                "IdcheckioInteraction.ERROR: $errorMsg \n$data"
+                            )
+                        }
+                    }
                 }
             }
             // We can filter the cameras
@@ -150,6 +170,9 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
     }
 
     private fun setupIDCapture(idcheckioView: IdcheckioView.Builder) {
+        // read eMRTD
+        idcheckioView.readEmrtd(true)
+
         // Landscape orientation for ID
         idcheckioView.orientation(Orientation.LANDSCAPE)
         // No HD for ID
@@ -159,26 +182,23 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
         // Data extraction from the ID Document
         // First side must contain a valid codeline, plus the SDK will try to extract a face picture
         idcheckioView.sideOneExtraction(
-            Extraction(DataRequirement.VALID, FaceDetection.ENABLED)
+            Extraction(DataRequirement.DECODED, FaceDetection.ENABLED)
         )
         // Second side must not contain any codeline
         idcheckioView.sideTwoExtraction(
-            Extraction(DataRequirement.REJECT, FaceDetection.DISABLED)
+            Extraction(DataRequirement.ANY, FaceDetection.ENABLED)
         )
 
         // Allow the user to skip scanning the second side of document
         idcheckioView.scanBothSides(Forceable.ENABLED)
 
+        idcheckioView.extraParameter(
+            EnumExtraParameters.MAX_PICTURE_FILESIZE,
+            FileSize.FOUR_MEGA_BYTES
+        )
+
         // Display manual capture button after 5s if no document was found
         idcheckioView.manualButtonTimer(5)
-    }
-
-    private fun startScanning() {
-        if (isOnline) {
-            sdkComponent.startOnline(cisContext)
-        } else {
-            sdkComponent.start()
-        }
     }
 
     private fun returnResult(data: Any?) {

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
         private val PERMISSION_REQUEST_CODE = 111
     }
 
-    private var isOnline = false
+    private var isOnline = true
     private var docType: DocumentType = DocumentType.ID
     // The CISContext data for matching online liveness with reference ID
     private var cisContext: CISContext? = null

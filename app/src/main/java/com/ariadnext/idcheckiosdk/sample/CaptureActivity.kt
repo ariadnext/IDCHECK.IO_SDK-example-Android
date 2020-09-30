@@ -151,6 +151,8 @@ class CaptureActivity : AppCompatActivity(), IdcheckioInteractionInterface {
         }
         // Register IdcheckioInteractionInterface listener
         idcheckioView.listener(this)
+        // Applying app theme to SDK
+        idcheckioView.style(R.style.MyCustomStyle)
 
         return idcheckioView.build()
     }

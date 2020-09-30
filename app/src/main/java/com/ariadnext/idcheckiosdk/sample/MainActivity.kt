@@ -88,9 +88,8 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
             PERMISSION_REQUEST_CODE -> {
                 // Check if all required permissions are granted
                 val permissionCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                val permissionRecordAudio = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-                if (!(permissionCamera == PackageManager.PERMISSION_GRANTED && permissionRecordAudio == PackageManager.PERMISSION_GRANTED)) {
-                    Toast.makeText(this, "Please grant all permissions to SDK", Toast.LENGTH_LONG).show()
+                if (!(permissionCamera == PackageManager.PERMISSION_GRANTED)) {
+                    Toast.makeText(this, "Please grant Camera access permission to SDK", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -125,15 +124,15 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
     private fun checkPermissions() {
         // Ensure the user gave CAMERA and RECORD_AUDIO permission to the app
         val permissionCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-        val permissionMicrophone = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+//        val permissionMicrophone = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
 
         val listPermissionsNeeded = ArrayList<String>()
         if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.CAMERA)
         }
-        if (permissionMicrophone != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO)
-        }
+ //       if (permissionMicrophone != PackageManager.PERMISSION_GRANTED) {
+ //           listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO)
+ //       }
         // Ask user for missing permissions if needed
         if (listPermissionsNeeded.isNotEmpty()) {
             ActivityCompat.requestPermissions(this, listPermissionsNeeded.toTypedArray(), PERMISSION_REQUEST_CODE)

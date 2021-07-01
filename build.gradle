@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.idcheckio_sdk_version = '5.9.0'
+    ext.idcheckio_sdk_version = '6.0.0'
     ext.kotlin_version = '1.4.10'
     ext.material_version = '1.1.0-rc02'
     repositories {

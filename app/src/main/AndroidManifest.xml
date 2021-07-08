@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.ariadnext.idcheckiosdk.sample">
+    package="com.ariadnext.idcheckio.sdk.sample">
 
     <!-- Remove unused permission -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.RECORD_AUDIO"
+        tools:node="remove" />
 
     <application
         android:allowBackup="true"
@@ -12,21 +14,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.IDCheckioSdkSample">
+        <activity
+            android:name=".feature.common.MainActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:screenOrientation="portrait">
+            <!-- The config changes are mandatory to allow the SDK to handle by himself orientation, dark mode, ... -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- Here we lock orientation for the capture activity -->
-        <activity
-            android:name=".CaptureActivity"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen" />
     </application>
 
 </manifest>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="stroke_width_button">2dp</dimen>
+    <dimen name="normal_button_min_height">40dp</dimen>
+    <dimen name="small_button_size">14sp</dimen>
+    <dimen name="normal_text_size">14sp</dimen>
+    <dimen name="small_text_size">11sp</dimen>
+    <dimen name="data_value_left_margin">22dp</dimen>
+    <dimen name="data_label_left_margin">16dp</dimen>
+    <dimen name="data_value_right_margin">16dp</dimen>
+    <dimen name="data_label_right_margin">16dp</dimen>
+    <dimen name="data_value_bottom_margin">4dp</dimen>
+</resources>

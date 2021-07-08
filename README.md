@@ -1,40 +1,45 @@
-# IDCheck.io SDK Sample - MobileSDK v5 - Android #
+![ARIADNEXT Logo](img/logo.png)
 
-## Setup ##
 
-You need credentials to acces ARIADNEXT's Nexus hosting the SDK library.
-Once retrieved, update the file `app/build.gradle` to set your credentials :
+# IDCheck.io Mobile SDK Sample
 
-```gradle
+## Getting Started
 
-repositories {
-    mavenLocal()
-    // AriadNext External Nexus for SDK dependency
-    maven {
-        credentials {
-            username 'YOUR_USER_NAME'
-            password 'YOUR_PASSWORD'
+To get this sample running, please follow the instructions :
+
+ 1. Ask our [Customer Success Managers](mailto:csm@ariadnext.com) for credentials to access the *ARIADNEXT* external repository in order to retrieve the **IDCheck.io Mobile SDK** library and integrate it to the project.
+
+ 2. You will need to create a keystore in order to [sign](https://developer.android.com/studio/publish/app-signing#opt-out) the final `apk`, this keystore's fingerprint will be declared in the licence and used to check the application's integrity at runtime while activating the SDK. You will have to provide the keystore SHA1 fingerprint to the CSM team when requesting a license.
+ Here is the command line that will help you obtain it :
+ ```shell
+ keytool -list -v -keystore app/idcheckio_sdk.jks
+ ```
+ In order to sign your app with the keystore, add it to the **app** folder and update the **app/build.gradle** file with the key/passwords you created in the keystore :
+ ```groovy
+ android {
+    ...
+    signingConfigs {
+        release {
+            // TODO 2 : add your own keystore.
+            storeFile file("<PATH TO YOUR KEYSTORE FILE>")
+            storePassword "<KEYSTORE PASSWORD>"
+            keyAlias "<KEY>"
+            keyPassword "<KEY PASSWORD>"
         }
-        url "https://repoman.rennes.ariadnext.com/content/repositories/com.ariadnext.idcheckio/"
     }
-}
+ }
+ ```
 
-```
+ 3. With your keystore's SHA1 fingerprint, ask the CSM Team to create a license for you to test the SDK. Add this license file to the project : rename it to **license.axt** and move it to the **app/src/main/assets** folder.
 
-## Add your SDK's licence
+## Sample application
 
-To be able to use the sample, please :
+This sample project aims to showcase all possibilities of the **IDCheck.io Mobile SDK** and the associated best practices regarding these features. It also helps you understand how you can easily integrate the SDK, activate it and customise/adapt it to your application and business needs.
 
-- Add your license file in the `./app/src/main/assets/` folder of this project
-- Name it "**licence.axt**"
-- Update the signing configuration with your certificate (the one for which you send the SHA-1 fingerprint to ARIADNEXT)
+The main screen displays a sliding tile to choose between four distinct capture flows :
+ - **Online flow** : this flow uses the SDK for capturing an ID document first, and then continues with a Biometric Liveness session capture. It shows what you need to do in order to chain multiple online captures and keep transferring the *OnlineContext* through all these captures.
+ - **Simple capture** : this flow has a specific selector to show you how to setup the SDK in order to capture a specific document (from ID to address proof, or even selfie).
+ - **Advanced capture** : this flow is identical to the *Simple capture* regarding the SDK configuration, but it shows you how you can register your application as a listener to every SDK Interaction and display your own UI over the SDK. This way, yous can easily "override" the SDK while capturing a document and show your own designed screens and messages to the user.
+ - **Analyze** : this flow uses the `Idcheckio.analyze` API which is useful when you don't want to use the camera feed for live-capturing and analyzing a document, but instead use a static image provided by the user from his phone's gallery.
 
-## Run the project
-
-Import the project in Android Studio, or build the application using this command : 
-
-```shell
-./gradlew assembleRelease
-```
-
-You are now good to go ! 😎
+Select the flow you want to try, and click on *Give it a try* button to start capturing documents with the SDK.

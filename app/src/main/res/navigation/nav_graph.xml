@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ariadnext.idcheckio.sdk.sample.feature.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_idFragment"
+            app:destination="@id/idFragment"
+            app:popUpTo="@id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_overrideFragment"
+            app:destination="@id/overrideFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_simpleCaptureFragment"
+            app:destination="@id/simpleCaptureFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/simpleCaptureFragment"
+        android:name="com.ariadnext.idcheckio.sdk.sample.feature.simplecapture.SimpleCaptureFragment"
+        android:label="fragment_simple_capture"
+        tools:layout="@layout/fragment_simple_capture">
+        <action
+            android:id="@+id/action_simpleCaptureFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="config"
+            app:argType="com.ariadnext.idcheckio.sdk.sample.feature.bean.SimpleConfig" />
+    </fragment>
+    <fragment
+        android:id="@+id/overrideFragment"
+        android:name="com.ariadnext.idcheckio.sdk.sample.feature.overridecapture.OverrideFragment"
+        android:label="fragment_override"
+        tools:layout="@layout/fragment_override">
+        <action
+            android:id="@+id/action_overrideFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="config"
+            app:argType="com.ariadnext.idcheckio.sdk.sample.feature.bean.SimpleConfig" />
+    </fragment>
+    <fragment
+        android:id="@+id/idFragment"
+        android:name="com.ariadnext.idcheckio.sdk.sample.feature.onlineflow.IdFragment"
+        android:label="fragment_id"
+        tools:layout="@layout/fragment_id">
+        <action
+            android:id="@+id/action_idFragment_to_idCaptureFragment"
+            app:destination="@id/idCaptureFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/idCaptureFragment"
+        android:name="com.ariadnext.idcheckio.sdk.sample.feature.onlineflow.IdCaptureFragment"
+        android:label="fragment_id_capture"
+        tools:layout="@layout/fragment_id_capture">
+        <action
+            android:id="@+id/action_idCaptureFragment_to_livenessFragment"
+            app:destination="@id/livenessFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/livenessFragment"
+        android:name="com.ariadnext.idcheckio.sdk.sample.feature.onlineflow.LivenessFragment"
+        android:label="fragment_liveness"
+        tools:layout="@layout/fragment_liveness">
+        <action
+            android:id="@+id/action_livenessFragment_to_livenessCaptureFragment"
+            app:destination="@id/livenessCaptureFragment"
+            app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="result"
+            app:argType="com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult" />
+    </fragment>
+    <fragment
+        android:id="@+id/livenessCaptureFragment"
+        android:name="com.ariadnext.idcheckio.sdk.sample.feature.onlineflow.LivenessCaptureFragment"
+        android:label="fragment_liveness_capture"
+        tools:layout="@layout/fragment_liveness_capture">
+        <action
+            android:id="@+id/action_livenessCaptureFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="result"
+            app:argType="com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.ariadnext.idcheckio.sdk.sample.feature.result.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="result"
+            app:argType="com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult" />
+    </fragment>
+</navigation>

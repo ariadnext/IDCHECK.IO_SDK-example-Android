@@ -1,123 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <ImageView
-        android:id="@+id/iv_main_logo"
-        android:layout_width="260dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/tv_main_document_type"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25"
-        app:srcCompat="@drawable/ic_idcheckio_logo" />
-
-    <TextView
-        android:id="@+id/tv_main_document_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/main_document_type"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Switch
-        android:id="@+id/sw_main_document_type_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:switchPadding="16dp"
-        android:text="ID"
-        app:layout_constraintBottom_toTopOf="@+id/sw_main_document_type_liveness"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_main_document_type"
-        app:layout_constraintTop_toTopOf="@+id/tv_main_document_type" />
-
-
-    <Switch
-        android:id="@+id/sw_main_document_type_liveness"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:switchPadding="16dp"
-        android:text="Liveness"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_main_document_type"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_main_document_type"
-        app:layout_constraintTop_toBottomOf="@+id/sw_main_document_type_id" />
-
-    <Switch
-        android:id="@+id/sw_main_online_mode"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:switchPadding="16dp"
-        android:text="@string/main_online_session"
-        app:layout_constraintBottom_toTopOf="@+id/btn_main_scan"
-        app:layout_constraintEnd_toEndOf="@+id/btn_main_scan"
-        app:layout_constraintStart_toStartOf="@+id/btn_main_scan" />
-
-    <Button
-        android:id="@+id/btn_main_scan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        android:enabled="false"
-        android:text="@string/main_start_session"
-        android:textColor="@color/idcheckio_sdk_white"
-        app:backgroundTint="@color/main_button_background"
-        app:layout_constraintBottom_toTopOf="@+id/tv_main_clear_context"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_main_clear_context"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/main_clear_context"
-        android:textColor="@color/idcheckio_sdk_blue_ariadnext"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_main_sdk_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/main_sdk_version"
-        app:layout_constraintBottom_toTopOf="@+id/tv_main_document_type"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_main_logo"
-        app:layout_constraintVertical_bias="0.19" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    app:defaultNavHost="true"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:navGraph="@navigation/nav_graph"
+    tools:context=".feature.common.MainActivity" />

@@ -1,5 +1,6 @@
 ![ARIADNEXT Logo](img/logo.png)
 
+> 💡 For older IDCheck.io Mobile SDK Sample (v5.x.x), please checkout the [sdk_v5](https://github.com/ariadnext/IDCHECK.IO_SDK-example-Android/tree/sdk_v5) branch
 
 # IDCheck.io Mobile SDK Sample
 
@@ -12,7 +13,7 @@ To get this sample running, please follow the instructions :
  2. You will need to create a keystore in order to [sign](https://developer.android.com/studio/publish/app-signing#opt-out) the final `apk`, this keystore's fingerprint will be declared in the licence and used to check the application's integrity at runtime while activating the SDK. You will have to provide the keystore SHA1 fingerprint to the CSM team when requesting a license.
  Here is the command line that will help you obtain it :
  ```shell
- keytool -list -v -keystore app/idcheckio_sdk.jks
+ keytool -list -v -keystore app/<YOUR KEYSTORE FILE>.jks
  ```
  In order to sign your app with the keystore, add it to the **app** folder and update the **app/build.gradle** file with the key/passwords you created in the keystore :
  ```groovy

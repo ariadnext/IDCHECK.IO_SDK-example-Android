@@ -18,6 +18,7 @@
         <activity
             android:name=".feature.common.MainActivity"
             android:configChanges="orientation|screenSize|uiMode"
+            android:exported="true"
             android:screenOrientation="portrait">
             <!-- The config changes are mandatory to allow the SDK to handle by himself orientation, dark mode, ... -->
             <intent-filter>

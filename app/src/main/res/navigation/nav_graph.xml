@@ -15,11 +15,12 @@
             app:destination="@id/idFragment"
             app:popUpTo="@id/homeFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_overrideFragment"
-            app:destination="@id/overrideFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_simpleCaptureFragment"
             app:destination="@id/simpleCaptureFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ipsCaptureFragment"
+            app:destination="@id/ipsCaptureFragment"
+            app:popUpTo="@id/homeFragment" />
         <action
             android:id="@+id/action_homeFragment_to_resultFragment"
             app:destination="@id/resultFragment"
@@ -32,19 +33,6 @@
         tools:layout="@layout/fragment_simple_capture">
         <action
             android:id="@+id/action_simpleCaptureFragment_to_resultFragment"
-            app:destination="@id/resultFragment"
-            app:popUpTo="@id/homeFragment" />
-        <argument
-            android:name="config"
-            app:argType="com.ariadnext.idcheckio.sdk.sample.feature.bean.SimpleConfig" />
-    </fragment>
-    <fragment
-        android:id="@+id/overrideFragment"
-        android:name="com.ariadnext.idcheckio.sdk.sample.feature.overridecapture.OverrideFragment"
-        android:label="fragment_override"
-        tools:layout="@layout/fragment_override">
-        <action
-            android:id="@+id/action_overrideFragment_to_resultFragment"
             app:destination="@id/resultFragment"
             app:popUpTo="@id/homeFragment" />
         <argument
@@ -96,6 +84,12 @@
         <argument
             android:name="result"
             app:argType="com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult" />
+    </fragment>
+    <fragment
+        android:id="@+id/ipsCaptureFragment"
+        android:name="com.ariadnext.idcheckio.sdk.sample.feature.ips.IPSSessionFragment"
+        android:label="fragment_ips_capture"
+        tools:layout="@layout/fragment_simple_capture">
     </fragment>
     <fragment
         android:id="@+id/resultFragment"

@@ -1,61 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/home_advanced_capture_title"
-        android:textColor="@color/blue"
+        android:textColor="@color/primary_color"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/home_simple_capture_title" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/descriptionTop"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/home_advanced_capture_choose_doc_type"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        android:textColor="@color/main_text_color"
+        app:layout_constraintBottom_toTopOf="@id/documentSelector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="@string/home_simple_capture_choose_doc_type" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/documentSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/descriptionBottom"
+        app:layout_constraintEnd_toEndOf="@id/descriptionTop"
+        app:layout_constraintStart_toStartOf="@id/descriptionTop"
+        app:layout_constraintTop_toBottomOf="@id/descriptionTop"
+        tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/descriptionBottom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/home_simple_capture_recommended_settings"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/main_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@id/documentSelector"
+        tools:text="@string/home_simple_capture_recommended_settings" />
 </androidx.constraintlayout.widget.ConstraintLayout>

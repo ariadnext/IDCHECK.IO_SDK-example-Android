@@ -12,7 +12,6 @@ import androidx.annotation.ColorRes
 val <T> T.exhaustive: T
     get() = this
 
-
 /**
  * Extension method to get the color Int from a color Res.
  * @param color the Color.

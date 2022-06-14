@@ -1,24 +1,23 @@
 package com.ariadnext.idcheckio.sdk.sample.feature.onlineflow
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.ariadnext.idcheckio.sdk.sample.R
-import kotlinx.android.synthetic.main.fragment_id.*
+import com.ariadnext.idcheckio.sdk.sample.databinding.FragmentIdBinding
+import com.ariadnext.idcheckio.sdk.sample.feature.common.BaseFragment
 
 /** Simple fragment used to present the id scan */
-class IdFragment : Fragment() {
+class IdFragment : BaseFragment<FragmentIdBinding>() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_id, container, false)
-    }
+    override val binding by lazy { FragmentIdBinding.inflate(layoutInflater) }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Lifecycle
+    ///////////////////////////////////////////////////////////////////////////
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btn_id_capture.setOnClickListener {
+        binding.btnIdCapture.setOnClickListener {
             findNavController().navigate(IdFragmentDirections.actionIdFragmentToIdCaptureFragment())
         }
     }

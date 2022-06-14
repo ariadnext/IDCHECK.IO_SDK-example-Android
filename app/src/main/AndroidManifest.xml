@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.ariadnext.idcheckio.sdk.sample">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Remove unused permission -->
     <uses-permission
@@ -19,7 +18,8 @@
             android:name=".feature.common.MainActivity"
             android:configChanges="orientation|screenSize|uiMode"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <!-- The config changes are mandatory to allow the SDK to handle by himself orientation, dark mode, ... -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

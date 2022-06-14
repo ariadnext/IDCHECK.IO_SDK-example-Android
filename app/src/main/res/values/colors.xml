@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue">#FF0000DE</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="background_black">#BF000000</color>
-    <color name="gray_label">#888888</color>
-    <color name="blue20_opaque">#FFCCCCF8</color>
+    <color name="primary_color">@color/blue_dark</color>
+    <color name="background_color">@color/white</color>
+    <color name="loading_overlay_background">@color/black_74</color>
+    <color name="main_text_color">@color/black</color>
+    <color name="alt_text_color">@color/gray</color>
+
+    <color name="control_color">@color/blue_dark</color>
+    <color name="control_text_color">@color/white</color>
+    <color name="disabled_control_color">@color/blue_moon_raker</color>
+
+    <!-- White-->
+    <color name="white">#FFFFFF</color>
+
+    <!-- Black-->
+    <color name="black">#000000</color>
+    <color name="black_74">#BF000000</color>
+
+    <!-- Gray-->
+    <color name="gray">#888888</color>
+
+    <!-- Blue -->
+    <color name="blue_dark">#0000DE</color>
+    <color name="blue_moon_raker">#CCCCF8</color>
+
 </resources>

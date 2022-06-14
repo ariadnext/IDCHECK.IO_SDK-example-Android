@@ -2,17 +2,17 @@
     <!-- Base application theme. -->
     <style name="Theme.IDCheckioSdkSample" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryVariant">@color/blue</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/primary_color</item>
+        <item name="colorOnPrimary">@color/main_text_color</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/blue</item>
-        <item name="colorSecondaryVariant">@color/blue</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/primary_color</item>
+        <item name="colorSecondaryVariant">@color/primary_color</item>
+        <item name="colorOnSecondary">@color/alt_text_color</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Color surface. -->
-        <item name="colorSurface">@color/white</item>
+        <item name="colorSurface">@color/background_color</item>
         <!-- Customize your theme here. -->
         <item name="snackbarStyle">@style/IDCheck.io.SnackBar</item>
         <item name="snackbarTextViewStyle">@style/IDCheck.io.SnackBar.TextView</item>
@@ -20,18 +20,19 @@
     </style>
 
     <style name="IDCheck.io.SnackBar" parent="Widget.MaterialComponents.Snackbar">
-        <item name="android:background">@color/blue</item>
+        <item name="android:background">@color/control_color</item>
+        <item name="android:textColor">@color/control_text_color</item>
         <item name="android:layout_margin">0dp</item>
     </style>
 
     <style name="IDCheck.io.SnackBar.TextView" parent="Widget.MaterialComponents.Snackbar.TextView">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/control_text_color</item>
         <item name="android:maxLines">4</item>
         <item name="android:textSize">13sp</item>
     </style>
 
     <style name="IDCheck.io.SnackBar.Button" parent="Widget.MaterialComponents.Button.TextButton.Snackbar">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/control_text_color</item>
     </style>
 
     <style name="IDCheckioButton" parent="Widget.AppCompat.Button">
@@ -47,6 +48,14 @@
         <item name="android:background">@drawable/empty_blue_button</item>
         <item name="android:textSize">@dimen/small_button_size</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/blue</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="BlueButton" parent="IDCheckioButton">
+        <item name="android:minHeight">@dimen/normal_button_min_height</item>
+        <item name="android:background">@drawable/blue_button</item>
+        <item name="android:textSize">@dimen/small_button_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/control_text_color</item>
     </style>
 </resources>

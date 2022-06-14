@@ -6,6 +6,6 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:singleLine="true"
-    android:textColor="@color/blue"
+    android:textColor="@color/primary_color"
     android:textStyle="bold"
     tools:text="This is an example" />

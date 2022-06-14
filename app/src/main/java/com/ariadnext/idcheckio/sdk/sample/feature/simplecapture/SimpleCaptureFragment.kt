@@ -1,10 +1,8 @@
 package com.ariadnext.idcheckio.sdk.sample.feature.simplecapture
 
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
@@ -12,8 +10,9 @@ import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioInteraction
 import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioInteractionInterface
 import com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult
 import com.ariadnext.idcheckio.sdk.sample.R
+import com.ariadnext.idcheckio.sdk.sample.databinding.FragmentSimpleCaptureBinding
+import com.ariadnext.idcheckio.sdk.sample.feature.common.BaseFragment
 import com.ariadnext.idcheckio.sdk.sample.feature.home.HomeFragment
-import com.ariadnext.idcheckio.sdk.sample.feature.overridecapture.OverrideFragment
 import com.ariadnext.idcheckio.sdk.sample.utils.SdkConfig
 import com.google.android.material.snackbar.Snackbar
 
@@ -21,19 +20,19 @@ import com.google.android.material.snackbar.Snackbar
  * A simple implementation of the IDCheck.io Sdk.
  * Before starting this fragment, you need to take a look at how to activate the SDK in the [HomeFragment]
  */
-class SimpleCaptureFragment : Fragment(), IdcheckioInteractionInterface {
+class SimpleCaptureFragment : BaseFragment<FragmentSimpleCaptureBinding>(),
+    IdcheckioInteractionInterface {
+
+    override val binding by lazy { FragmentSimpleCaptureBinding.inflate(layoutInflater) }
+
     /**
      * It contains the config you have chosen.
      */
     private val args: SimpleCaptureFragmentArgs by navArgs()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_simple_capture, container, false)
-    }
+    ///////////////////////////////////////////////////////////////////////////
+    // Lifecycle
+    ///////////////////////////////////////////////////////////////////////////
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,20 +42,20 @@ class SimpleCaptureFragment : Fragment(), IdcheckioInteractionInterface {
             .build()
 
         // We add the fragment to our view using the child fragment manager and we start it.
-        idcheckioView.let {
-            childFragmentManager.beginTransaction().replace(R.id.child_container, it).commit()
-            it.start()
-        }
+        childFragmentManager
+            .beginTransaction()
+            .replace(R.id.child_container, idcheckioView)
+            .commit()
+        idcheckioView.start()
     }
 
-    // ---------------------------------------
-    // IdcheckioInteractionInterface interface
-    // ---------------------------------------
+    ///////////////////////////////////////////////////////////////////////////
+    // IdcheckioInteractionInterface implementation
+    ///////////////////////////////////////////////////////////////////////////
 
     /**
      * You will receive interaction from the SDK in this method.
      * By default, you will only receive Result and Error interaction.
-     * To see more interaction, you can go take a loot at the [OverrideFragment]
      */
     override fun onIdcheckioInteraction(interaction: IdcheckioInteraction, data: Any?) {
         when (interaction) {
@@ -66,9 +65,7 @@ class SimpleCaptureFragment : Fragment(), IdcheckioInteractionInterface {
              */
             IdcheckioInteraction.RESULT -> (data as IdcheckioResult).let {
                 findNavController().navigate(
-                    SimpleCaptureFragmentDirections.actionSimpleCaptureFragmentToResultFragment(
-                        it
-                    )
+                    SimpleCaptureFragmentDirections.actionSimpleCaptureFragmentToResultFragment(it)
                 )
             }
             /**
@@ -76,6 +73,7 @@ class SimpleCaptureFragment : Fragment(), IdcheckioInteractionInterface {
              * It can't be null.
              */
             IdcheckioInteraction.ERROR -> {
+                Log.e("SimpleCaptureFragment", "SDK Error : ${data as ErrorMsg}")
                 Snackbar.make(requireView(), R.string.sdk_error, Snackbar.LENGTH_LONG).show()
                 findNavController().popBackStack()
             }

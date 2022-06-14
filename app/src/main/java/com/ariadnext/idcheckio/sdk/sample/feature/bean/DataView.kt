@@ -1,4 +1,4 @@
-package com.ariadnext.idcheckio.sdk.sample.feature.overridecapture
+package com.ariadnext.idcheckio.sdk.sample.feature.bean
 
 /** Class used to store the data extracted from the SDK */
 class DataView {

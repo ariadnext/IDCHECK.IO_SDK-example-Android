@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Exported from POEditor    -->
+<!-- see https://poeditor.com  -->
 <resources>
     <string name="app_name">"IDCheck.io Sdk Sample"</string>
+    <string name="common_ok">"OK"</string>
     <string name="common_retry">"Retry"</string>
+    <string name="common_start">"Start"</string>
     <string name="data_birthdate">"Birthdate"</string>
     <string name="data_documentNumber">"Document number"</string>
     <string name="data_emitCountry">"Emit country"</string>
     <string name="data_emitDate">"Emit date"</string>
-    <string name="data_emitDepartement">"Emit departement"</string>
+    <string name="data_emitDepartment">"Emit department"</string>
     <string name="data_expirationDate">"Expiration date"</string>
     <string name="data_firstNames">"First names"</string>
     <string name="data_firstRegistrationDate">"First car registration date"</string>
@@ -24,6 +28,8 @@ You must choose a document type here:"</string>
     <string name="home_analyze_content">"This example shows you how to use the analyze API to use an image of an ID you already have on your phone."</string>
     <string name="home_button">"Give it a try"</string>
     <string name="home_init_failed">"An error occurred during the initialization. Check your connection then press Retry"</string>
+    <string name="home_ips_capture_content">"This sample offers to start an IPS session."</string>
+    <string name="home_ips_capture_title">"IPS Session"</string>
     <string name="home_loading_text">"Analyze in progress
 Please wait …"</string>
     <string name="home_online_flow_content">"This example shows you how to easily integrate the SDK into an online flow.
@@ -38,6 +44,9 @@ You must choose a document type here:"</string>
     <string name="home_simple_capture_recommended_settings">"The sdk will then be configured with the recommended settings for this type of document."</string>
     <string name="home_simple_capture_title">"Simple capture"</string>
     <string name="id_text">"To verify your identity, we will start by scanning your identity card."</string>
+    <string name="ips_info">"Folder UID can be requested to the IPS service. Please contact customer support for more information."</string>
+    <string name="ips_instruction">"Enter your folder UID"</string>
     <string name="liveness_text">"We will now verify that you are the holder of this identity."</string>
     <string name="sdk_error">"An error has occurred. Please look at the logs for more information"</string>
+    <string name="uid_placeholder">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</string>
 </resources>

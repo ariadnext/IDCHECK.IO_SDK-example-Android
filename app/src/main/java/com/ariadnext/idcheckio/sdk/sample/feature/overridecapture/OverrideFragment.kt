@@ -20,6 +20,7 @@ import com.ariadnext.idcheckio.sdk.interfaces.result.Document
 import com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult
 import com.ariadnext.idcheckio.sdk.module.ui.command.EnumCommand
 import com.ariadnext.idcheckio.sdk.sample.R
+import com.ariadnext.idcheckio.sdk.sample.feature.bean.SimpleConfig
 import com.ariadnext.idcheckio.sdk.sample.feature.home.HomeFragment
 import com.ariadnext.idcheckio.sdk.sample.utils.ImageUtils
 import com.ariadnext.idcheckio.sdk.sample.utils.SdkConfig
@@ -128,6 +129,8 @@ class OverrideFragment : Fragment(), IdcheckioInteractionInterface {
              * You can use you own quad design.
              * You will receive a [QuadMsg] object. It contains a [Quad] structure holding the 4 points coordinates of the document
              * recognized in the source image and a boolean to show or hide the quad view.
+             *
+             * In the case of a selfie, you will receive a square, to show an oval you can stick to the left and right side of the quad and multiply the height by 1.3.
              */
             IdcheckioInteraction.QUAD -> {
                 val quadMsg = data as QuadMsg
@@ -135,7 +138,7 @@ class OverrideFragment : Fragment(), IdcheckioInteractionInterface {
                     quadView?.let {
                         it.quad = quadMsg.quad
                     } ?: run {
-                        quadView = OverrideQuad(requireContext(), quadMsg.quad)
+                        quadView = OverrideQuad(requireContext(), quadMsg.quad, useFaceQuad = args.config == SimpleConfig.SELFIE)
                         override_container.addView(
                                 quadView, ConstraintLayout.LayoutParams(
                                 ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT
@@ -168,6 +171,15 @@ class OverrideFragment : Fragment(), IdcheckioInteractionInterface {
                     IdcheckioUIMsg.WRONG_SIDE -> showInSnackbar(R.string.idcheckio_sdk_scan_wrong_side)
                     IdcheckioUIMsg.INVALID_DOCUMENT -> showInSnackbar(R.string.idcheckio_sdk_invalid)
                     IdcheckioUIMsg.INVALID_DOCTYPE -> showInSnackbar(R.string.idcheckio_sdk_error_rejected)
+                    IdcheckioUIMsg.SELFIE_QA_DONT_MOVE -> showInSnackbar(R.string.idcheckio_sdk_liveness_qa_be_still)
+                    IdcheckioUIMsg.SELFIE_QA_TOO_BLUR -> showInSnackbar(R.string.idcheckio_sdk_liveness_qa_blur)
+                    IdcheckioUIMsg.SELFIE_QA_WRONG_EXPOSURE -> showInSnackbar(R.string.idcheckio_sdk_liveness_qa_wrong_exposure)
+                    IdcheckioUIMsg.SELFIE_QA_FACE_OVEREXPOSED -> showInSnackbar(R.string.idcheckio_sdk_liveness_qa_exposure_side)
+                    IdcheckioUIMsg.SELFIE_QA_UNSTABLE_LIGHT -> showInSnackbar(R.string.idcheckio_sdk_liveness_qa_rolling_intensity)
+                    IdcheckioUIMsg.SELFIE_QA_NO_FACE_DETECTED -> showInSnackbar(R.string.idcheckio_sdk_liveness_qa_no_face)
+                    IdcheckioUIMsg.SELFIE_QA_FACE_TOO_SMALL -> showInSnackbar(R.string.idcheckio_sdk_liveness_qa_face_small)
+                    IdcheckioUIMsg.SELFIE_QA_FACE_TOO_BIG -> showInSnackbar(R.string.idcheckio_sdk_liveness_qa_face_big)
+                    IdcheckioUIMsg.SELFIE_QA_NOT_CENTERED -> showInSnackbar(R.string.idcheckio_sdk_liveness_qa_not_centered)
                     IdcheckioUIMsg.CLEAR -> dismissSnackbar()
 
                     /**

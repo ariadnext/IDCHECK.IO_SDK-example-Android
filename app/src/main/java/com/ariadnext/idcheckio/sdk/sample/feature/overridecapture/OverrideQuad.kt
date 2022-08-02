@@ -10,7 +10,7 @@ import com.ariadnext.idcheckio.sdk.bean.Quad
 
 /** Custom view used to show a quad */
 @SuppressLint("ViewConstructor")
-class OverrideQuad(context: Context, quad: Quad) : View(context) {
+class OverrideQuad(context: Context, quad: Quad, private val useFaceQuad: Boolean) : View(context) {
     private var paint: Paint = Paint()
 
     /** Store the quad */
@@ -29,30 +29,38 @@ class OverrideQuad(context: Context, quad: Quad) : View(context) {
     }
 
     override fun onDraw(canvas: Canvas) {
-        canvas.drawCircle(
-            quad.leftTop.x.toFloat(),
-            quad.leftTop.y.toFloat(),
-            CIRCLE_RADIUS.toFloat(),
-            paint
-        )
-        canvas.drawCircle(
-            quad.leftBottom.x.toFloat(),
-            quad.leftBottom.y.toFloat(),
-            CIRCLE_RADIUS.toFloat(),
-            paint
-        )
-        canvas.drawCircle(
-            quad.rightTop.x.toFloat(),
-            quad.rightTop.y.toFloat(),
-            CIRCLE_RADIUS.toFloat(),
-            paint
-        )
-        canvas.drawCircle(
-            quad.rightBottom.x.toFloat(),
-            quad.rightBottom.y.toFloat(),
-            CIRCLE_RADIUS.toFloat(),
-            paint
-        )
+        if(useFaceQuad) {
+            val height = quad.leftBottom.y - quad.leftTop.y
+            val heightFaceMargin = height * 0.15
+            paint.style = Paint.Style.STROKE
+            canvas.drawOval(quad.leftTop.x.toFloat(), (quad.leftTop.y - heightFaceMargin).toFloat(),
+                quad.rightBottom.x.toFloat(), (quad.rightBottom.y + heightFaceMargin).toFloat(), paint)
+        } else {
+            canvas.drawCircle(
+                quad.leftTop.x.toFloat(),
+                quad.leftTop.y.toFloat(),
+                CIRCLE_RADIUS.toFloat(),
+                paint
+            )
+            canvas.drawCircle(
+                quad.leftBottom.x.toFloat(),
+                quad.leftBottom.y.toFloat(),
+                CIRCLE_RADIUS.toFloat(),
+                paint
+            )
+            canvas.drawCircle(
+                quad.rightTop.x.toFloat(),
+                quad.rightTop.y.toFloat(),
+                CIRCLE_RADIUS.toFloat(),
+                paint
+            )
+            canvas.drawCircle(
+                quad.rightBottom.x.toFloat(),
+                quad.rightBottom.y.toFloat(),
+                CIRCLE_RADIUS.toFloat(),
+                paint
+            )
+        }
     }
 
     companion object {

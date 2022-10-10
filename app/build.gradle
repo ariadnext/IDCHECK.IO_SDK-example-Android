@@ -7,33 +7,23 @@ plugins {
 android {
     namespace 'com.ariadnext.idcheckio.sdk.sample'
 
-    compileSdkVersion 32
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.ariadnext.idcheckio.sdk.sample"
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // TODO 2: Set your own IdCheck.io token
+        buildConfigField 'String', 'IDCHECKIO_ID_TOKEN', "\"YOUR_ID_TOKEN\""
     }
 
-    signingConfigs {
-        release {
-            // TODO 2 : add your own keystore.
-            storeFile file("<PATH TO YOUR KEYSTORE FILE>")
-            storePassword "<KEYSTORE PASSWORD>"
-            keyAlias "<KEY>"
-            keyPassword "<KEY PASSWORD>"
-        }
-    }
     buildTypes {
         buildTypes {
-            debug {
-                signingConfig signingConfigs.release
-            }
-            release {
-                signingConfig signingConfigs.release
+               release {
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             }
         }

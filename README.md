@@ -2,39 +2,34 @@
 
 ## Setup ##
 
-You need credentials to acces ARIADNEXT's Nexus hosting the SDK library.
-Once retrieved, update the file `app/build.gradle` to set your credentials :
+To get this sample running, please follow the instructions :
 
-```gradle
+1. Ask our [Customer Success Managers](mailto:csm@ariadnext.com) for credentials to access the *ARIADNEXT* external repository in order to retrieve the **IDCheck.io Mobile SDK** library and integrate it to the project (update the **build.gradle** at the root of the project):
 
-repositories {
-    mavenLocal()
-    // AriadNext External Nexus for SDK dependency
-    maven {
-        credentials {
-            username 'YOUR_USER_NAME'
-            password 'YOUR_PASSWORD'
-        }
-        url "https://repoman.rennes.ariadnext.com/content/repositories/com.ariadnext.idcheckio/"
-    }
-}
+   ```groovy
+   // TODO 1: Set your own credentials to access ARIADNEXT external repository in order to access SDK library download
+   maven {
+       credentials {
+           username = "<YOUR USERNAME>"
+           password = "<YOUR PASSWORD>"
+       }
+       url "https://repoman.rennes.ariadnext.com/content/repositories/com.ariadnext.idcheckio/"
+   }
+   ```
 
-```
+2. With your application bundle id, ask the [Customer Success Managers](mailto:csm@ariadnext.com) to create an `idToken` to activate the SDK. You can then integrate it in your project using a `buildConfigField` in your **app/build.gradle** file:
 
-## Add your SDK's licence
-
-To be able to use the sample, please :
-
-- Add your license file in the `./app/src/main/assets/` folder of this project
-- Name it "**licence.axt**"
-- Update the signing configuration with your certificate (the one for which you send the SHA-1 fingerprint to ARIADNEXT)
-
+   ```groovy
+   // TODO 2: Set your own IdCheck.io token
+   buildConfigField 'String', 'IDCHECKIO_ID_TOKEN', "\"YOUR_ID_TOKEN\""
+   ```
+   
 ## Run the project
 
 Import the project in Android Studio, or build the application using this command : 
 
 ```shell
-./gradlew assembleRelease
+./gradlew clean assembleDebug
 ```
 
 You are now good to go ! 😎

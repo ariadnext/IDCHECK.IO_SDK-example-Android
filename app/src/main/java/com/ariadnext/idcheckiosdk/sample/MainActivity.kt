@@ -12,13 +12,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.ariadnext.idcheckio.sdk.bean.CISContext
 import com.ariadnext.idcheckio.sdk.bean.DocumentType
-import com.ariadnext.idcheckio.sdk.bean.SdkEnvironment
 import com.ariadnext.idcheckio.sdk.component.Idcheckio
 import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
 import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioCallback
 import com.ariadnext.idcheckio.sdk.interfaces.InitStatus
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity(), IdcheckioCallback {
 
@@ -144,7 +142,16 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
     private fun activateSDK() {
         if (Idcheckio.initStatus != InitStatus.SUCCESS) {
             // Activate SDK (call this when the users enters the onboarding sequence and you need the SDK for scanning)
-            Idcheckio.activate("licence", this, this, true, environment = SdkEnvironment.DEMO)
+            Idcheckio.activate(
+                // The ID Token is used to authenticate and activate the SDK.
+                idToken = BuildConfig.IDCHECKIO_ID_TOKEN,
+                // Activation callback (IdcheckioCallback) to receive the SDK's activation result, in our case, it's our fragment.
+                callback = this,
+                // The Context is needed to initialize the SDK components.
+                activity = this,
+                // Set this flag to true if you need to check MRZ from the SDK (i.e. if using one of the following parameter in the SDK : sideOneExtraction, sideTwoExtraction)
+                extractData = true
+            )
         } else {
             btn_main_scan.isEnabled = true
         }
@@ -201,14 +208,16 @@ class MainActivity : AppCompatActivity(), IdcheckioCallback {
     override fun onInitEnd(success: Boolean, error: ErrorMsg?) {
         if (!success) {
             val message = "Error while initializing IDCheck.io SDK :"
-            Toast.makeText(
-                this,
-                error?.let { errorMsg ->
-                    "$message${errorMsg.code?.let { "code=$it" } ?: ""} message=${errorMsg.message}"
-                } ?: "$message Unknown error"
-                ,
-                Toast.LENGTH_LONG
-            ).show()
+            // FIXME: Do not handle UI from this callback, use the ViewModel to update UI State.
+            runOnUiThread {
+                Toast.makeText(
+                    this,
+                    error?.let { errorMsg ->
+                        "$message${errorMsg.code?.let { "code=$it" } ?: ""} message=${errorMsg.message}"
+                    } ?: "$message Unknown error",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         } else {
             Log.d(TAG, "onInitEnd -> Success!")
         }

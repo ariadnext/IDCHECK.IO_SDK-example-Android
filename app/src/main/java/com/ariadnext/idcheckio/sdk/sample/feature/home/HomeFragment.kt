@@ -15,6 +15,7 @@ import com.ariadnext.idcheckio.sdk.bean.*
 import com.ariadnext.idcheckio.sdk.component.Idcheckio
 import com.ariadnext.idcheckio.sdk.interfaces.*
 import com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult
+import com.ariadnext.idcheckio.sdk.sample.BuildConfig
 import com.ariadnext.idcheckio.sdk.sample.R
 import com.ariadnext.idcheckio.sdk.sample.feature.bean.SimpleConfig
 import com.ariadnext.idcheckio.sdk.sample.feature.home.HomeAdapter.Companion.ADVANCED_CAPTURE
@@ -45,8 +46,8 @@ class HomeFragment : Fragment(), IdcheckioCallback {
     private var side1ImageUri: Uri? = null
     private var side2ImageUri: Uri? = null
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         activate()
     }
 
@@ -125,21 +126,14 @@ class HomeFragment : Fragment(), IdcheckioCallback {
          * It must be called once before starting any capture session.
          */
         Idcheckio.activate(
-                // TODO 3 : Copy your own licence file to the app/src/main/assets folder.
-                // The name of your license file without the ".axt". This file should be in the `assets` folder.
-                licenseFilename = "license",
-                // Activation callback (IdcheckioCallback) to receive the SDK's activation result, in our case, it's our fragment.
-                callback = this,
-                // We need to provide an Activity for permissions checking if needed at runtime.
-                activity = requireActivity(),
-                // Set this flag to true if you need to check MRZ from the SDK (i.e. if using one of the following parameter in the SDK : sideOneExtraction, sideTwoExtraction)
-                extractData = true,
-                // Set to false if you use the speech challenge for your liveness session.
-                // It will then require `RECORD_AUDIO` permission (do not forget to add it to the AndroidManifest).
-                disableAudioForLiveness = true,
-                // Use DEMO for the sandbox environment while testing the SDK.
-                // Don't forget to set it to PROD once ready for production.
-                environment = SdkEnvironment.DEMO
+            // The ID Token is used to authenticate and activate the SDK.
+            idToken = BuildConfig.IDCHECKIO_ID_TOKEN,
+            // Activation callback (IdcheckioCallback) to receive the SDK's activation result, in our case, it's our fragment.
+            callback = this,
+            // The Context is needed to initialize the SDK components.
+            context = requireContext(),
+            // Set this flag to true if you need to check MRZ from the SDK (i.e. if using one of the following parameter in the SDK : sideOneExtraction, sideTwoExtraction)
+            extractData = true
         )
     }
 

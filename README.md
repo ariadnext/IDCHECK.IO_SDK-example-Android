@@ -1,6 +1,6 @@
 ![ARIADNEXT Logo](img/logo.png)
 
-> 💡 For older IDCheck.io Mobile SDK Sample (v5.x.x), please checkout the [sdk_v5](https://github.com/ariadnext/IDCHECK.IO_SDK-example-Android/tree/sdk_v5) branch
+> 💡 For older IDCheck.io Mobile SDK Sample (v6.x.x), please checkout the [sdk_v6](https://github.com/ariadnext/IDCHECK.IO_SDK-example-Android/tree/sdk_v6) branch
 
 # IDCheck.io Mobile SDK Sample
 
@@ -8,30 +8,25 @@
 
 To get this sample running, please follow the instructions :
 
- 1. Ask our [Customer Success Managers](mailto:csm@ariadnext.com) for credentials to access the *ARIADNEXT* external repository in order to retrieve the **IDCheck.io Mobile SDK** library and integrate it to the project.
+1. Ask our [Customer Success Managers](mailto:csm@ariadnext.com) for credentials to access the *ARIADNEXT* external repository in order to retrieve the **IDCheck.io Mobile SDK** library and integrate it to the project (update the **build.gradle** at the root of the project):
 
- 2. You will need to create a keystore in order to [sign](https://developer.android.com/studio/publish/app-signing#opt-out) the final `apk`, this keystore's fingerprint will be declared in the licence and used to check the application's integrity at runtime while activating the SDK. You will have to provide the keystore SHA1 fingerprint to the CSM team when requesting a license.
- Here is the command line that will help you obtain it :
- ```shell
- keytool -list -v -keystore app/<YOUR KEYSTORE FILE>.jks
- ```
- In order to sign your app with the keystore, add it to the **app** folder and update the **app/build.gradle** file with the key/passwords you created in the keystore :
- ```groovy
- android {
-    ...
-    signingConfigs {
-        release {
-            // TODO 2 : add your own keystore.
-            storeFile file("<PATH TO YOUR KEYSTORE FILE>")
-            storePassword "<KEYSTORE PASSWORD>"
-            keyAlias "<KEY>"
-            keyPassword "<KEY PASSWORD>"
-        }
-    }
- }
- ```
+   ```groovy
+   // TODO 1: Set your own credentials to access ARIADNEXT external repository in order to access SDK library download
+   maven {
+       credentials {
+           username = "<YOUR USERNAME>"
+           password = "<YOUR PASSWORD>"
+       }
+       url "https://repoman.rennes.ariadnext.com/content/repositories/com.ariadnext.idcheckio/"
+   }
+   ```
 
- 3. With your keystore's SHA1 fingerprint, ask the CSM Team to create a license for you to test the SDK. Add this license file to the project : rename it to **license.axt** and move it to the **app/src/main/assets** folder.
+2. With your application bundle id, ask the [Customer Success Managers](mailto:csm@ariadnext.com) to create an `idToken` to activate the SDK. You can then integrate it in your project using a `buildConfigField` in your **app/build.gradle** file:
+
+   ```groovy
+   // TODO 2: Set your own IdCheck.io token
+   buildConfigField 'String', 'IDCHECKIO_ID_TOKEN', "\"YOUR_ID_TOKEN\""
+   ```
 
 ## Sample application
 

@@ -87,26 +87,6 @@ class SdkConfig {
             return IdcheckioView.Builder()
                 .docType(DocumentType.ID)
                 .orientation(Orientation.PORTRAIT)
-                .confirmType(ConfirmationType.NONE)
-                .sideOneExtraction(
-                    Extraction(
-                        codeline = DataRequirement.ANY,
-                        face = FaceDetection.ENABLED
-                    )
-                )
-                .sideTwoExtraction(
-                    Extraction(
-                        codeline = DataRequirement.ANY,
-                        face = FaceDetection.ENABLED
-                    )
-                )
-                .integrityCheck(
-                    IntegrityCheck(
-                        readEmrtd = true,
-                        docLiveness = true
-                    )
-                )
-                .confirmAbort(true)
         }
 
         /**

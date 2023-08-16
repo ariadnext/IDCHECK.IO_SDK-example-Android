@@ -7,7 +7,7 @@ buildscript {
     ext.core_version = '1.9.0'
     ext.constraint_layout_version = '2.1.4'
     ext.material_version = '1.6.1'
-    ext.sdkVersion = '7.0.0'
+    ext.sdkVersion = '7.1.8'
 
     repositories {
         google()

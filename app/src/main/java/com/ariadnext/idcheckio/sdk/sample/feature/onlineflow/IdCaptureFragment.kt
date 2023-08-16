@@ -78,7 +78,6 @@ class IdCaptureFragment : BaseFragment<FragmentIdCaptureBinding>(), IdcheckioInt
              */
             IdcheckioInteraction.ERROR -> {
                 handleErrorMsg(data as ErrorMsg)
-                findNavController().popBackStack()
             }
             else -> {
                 /* Do nothing */

@@ -3,7 +3,6 @@ package com.ariadnext.idcheckio.sdk.sample.feature.ips
 import android.os.Bundle
 import android.view.View
 import com.ariadnext.idcheckio.sdk.bean.DayNightTheme
-import com.ariadnext.idcheckio.sdk.bean.DisplayMode
 import com.ariadnext.idcheckio.sdk.bean.IpsCustomization
 import com.ariadnext.idcheckio.sdk.bean.Orientation
 import com.ariadnext.idcheckio.sdk.component.Idcheckio
@@ -99,9 +98,7 @@ class IPSSessionFragment : BaseFragment<FragmentIpsBinding>(), IpsResultCallback
                 // Text color for titles.
                 R.color.ips_title_color,
                 // Text color for other text content.
-                R.color.ips_text_color,
-                // You can select SIMPLIFIED if you want no "card" display.
-                DisplayMode.DEFAULT
+                R.color.ips_text_color
             )
         )
     }

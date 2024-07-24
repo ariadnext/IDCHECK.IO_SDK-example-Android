@@ -12,7 +12,7 @@ import androidx.viewbinding.ViewBinding
 import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
 import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioErrorCause
 import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioSubCause
-import com.ariadnext.idcheckio.sdk.sample.utils.ViewUtils.Companion.displayMessage
+import com.ariadnext.idcheckio.sdk.sample.utils.ViewUtils
 
 /**
  * Base fragment to be extended by feature fragments.
@@ -109,7 +109,7 @@ abstract class BaseFragment<FragmentViewBinding : ViewBinding> : Fragment() {
      * @param message the message to display
      */
     private fun displayMessageAndBack(context: Context, message: String) {
-        displayMessage(context, message)
+        ViewUtils.displayMessage(context, message)
         findNavController().popBackStack()
     }
 

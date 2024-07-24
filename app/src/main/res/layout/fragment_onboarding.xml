@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.ips.IPSSessionFragment">
+    tools:context=".feature.onboarding.OnboardingFragment">
 
     <TextView
         android:id="@+id/instructionLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:text="@string/ips_instruction"
+        android:text="@string/onboarding_instruction"
         android:textColor="@color/main_text_color"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -25,7 +25,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:hint="@string/uid_placeholder"
         android:importantForAutofill="no"
         android:inputType="text"
         android:textAlignment="center"
@@ -34,25 +33,26 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/instructionLabel" />
+        app:layout_constraintTop_toBottomOf="@id/instructionLabel"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="16dp"
-        android:text="@string/ips_info"
+        android:text="@string/onboarding_info"
         app:layout_constraintTop_toBottomOf="@id/folderUidField" />
 
     <Button
         android:id="@+id/startIpsSessionButton"
-        style="@style/BlueButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="24dp"
+        android:layout_margin="@dimen/margin"
         android:text="@string/common_start"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:background="@drawable/orange_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

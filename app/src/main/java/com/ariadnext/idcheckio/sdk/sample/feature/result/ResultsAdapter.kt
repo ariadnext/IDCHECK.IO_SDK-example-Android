@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ariadnext.idcheckio.sdk.sample.databinding.ResultsItemBinding
 
 /** An adapter to show a viewpager with all the images taken by the SDK */
-class ResultsAdapter constructor(private val pathList: List<Uri>) :
+class ResultsAdapter (private val pathList: List<Uri>) :
     RecyclerView.Adapter<ResultsItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultsItemViewHolder {

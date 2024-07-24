@@ -10,9 +10,8 @@
         <item name="colorSecondaryVariant">@color/primary_color</item>
         <item name="colorOnSecondary">@color/alt_text_color</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Color surface. -->
-        <item name="colorSurface">@color/background_color</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <!-- Customize your theme here. -->
         <item name="snackbarStyle">@style/IDCheck.io.SnackBar</item>
         <item name="snackbarTextViewStyle">@style/IDCheck.io.SnackBar.TextView</item>
@@ -32,30 +31,6 @@
     </style>
 
     <style name="IDCheck.io.SnackBar.Button" parent="Widget.MaterialComponents.Button.TextButton.Snackbar">
-        <item name="android:textColor">@color/control_text_color</item>
-    </style>
-
-    <style name="IDCheckioButton" parent="Widget.AppCompat.Button">
-        <item name="android:stateListAnimator">@null</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="backgroundTint">@null</item>
-    </style>
-
-    <style name="EmptyBlueButton" parent="IDCheckioButton">
-        <item name="android:minHeight">@dimen/normal_button_min_height</item>
-        <item name="android:background">@drawable/empty_blue_button</item>
-        <item name="android:textSize">@dimen/small_button_size</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/colorOnPrimary</item>
-    </style>
-
-    <style name="BlueButton" parent="IDCheckioButton">
-        <item name="android:minHeight">@dimen/normal_button_min_height</item>
-        <item name="android:background">@drawable/blue_button</item>
-        <item name="android:textSize">@dimen/small_button_size</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/control_text_color</item>
     </style>
 </resources>

@@ -4,4 +4,4 @@
     android:id="@+id/child_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.simplecapture.SimpleCaptureFragment" />
+    tools:context=".feature.onlineflow.CaptureFragment" />

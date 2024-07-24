@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="onboarding_foreground_color">@color/idcheckio_sdk_background_color</color>
+    <color name="onboarding_border_color">@color/idcheckio_sdk_border_color</color>
+    <color name="onboarding_background_color">@color/idcheckio_sdk_secondary_background_color</color>
+    <color name="onboarding_primary_color">@color/idcheckio_sdk_primary_color</color>
+</resources>

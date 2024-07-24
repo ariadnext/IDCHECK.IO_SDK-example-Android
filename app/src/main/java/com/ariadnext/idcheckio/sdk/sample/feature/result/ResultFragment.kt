@@ -7,9 +7,6 @@ import androidx.navigation.fragment.navArgs
 import com.ariadnext.idcheckio.sdk.interfaces.result.ImageResult
 import com.ariadnext.idcheckio.sdk.sample.databinding.FragmentResultBinding
 import com.ariadnext.idcheckio.sdk.sample.feature.common.BaseFragment
-import com.ariadnext.idcheckio.sdk.sample.feature.bean.DataView
-import com.ariadnext.idcheckio.sdk.sample.utils.ViewUtils
-import com.ariadnext.idcheckio.sdk.sample.utils.exhaustive
 import com.google.android.material.tabs.TabLayoutMediator
 import java.io.File
 
@@ -32,36 +29,12 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
         /** Set all the images into a view pager */
         binding.vpResults.adapter = ResultsAdapter(getPathList(args.result.images))
         TabLayoutMediator(binding.tlResults, binding.vpResults) { _, _ -> }.attach()
-        /** Parse and show the extracted data */
-        showDataView()
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // Private functions
     ///////////////////////////////////////////////////////////////////////////
 
-    /**
-     * Show all the data extracted or nothing
-     * for the document that have no extracted data
-     */
-    private fun showDataView() {
-        val data = ViewUtils.getDataView(args.result)
-        for (details in data.fieldList) {
-            /** Show every extracted results */
-            when (details.fieldType) {
-                DataView.FieldType.LABEL -> ViewUtils.addLabelTextView(
-                    requireContext(),
-                    binding.llResults,
-                    details.value as Int
-                )
-                DataView.FieldType.VALUE -> ViewUtils.addValueTextView(
-                    requireContext(),
-                    binding.llResults,
-                    details.value.toString()
-                )
-            }.exhaustive
-        }
-    }
 
     /** Retrieve all images taken by the SDK */
     private fun getPathList(images: MutableList<ImageResult>): List<Uri> {

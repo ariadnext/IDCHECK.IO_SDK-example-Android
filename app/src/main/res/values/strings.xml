@@ -1,52 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Exported from POEditor    -->
 <!-- see https://poeditor.com  -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">"IDCheck.io Sdk Sample"</string>
     <string name="common_ok">"OK"</string>
     <string name="common_retry">"Retry"</string>
     <string name="common_start">"Start"</string>
-    <string name="data_birthdate">"Birthdate"</string>
-    <string name="data_documentNumber">"Document number"</string>
-    <string name="data_emitCountry">"Emit country"</string>
-    <string name="data_emitDate">"Emit date"</string>
-    <string name="data_emitDepartment">"Emit department"</string>
-    <string name="data_expirationDate">"Expiration date"</string>
-    <string name="data_firstNames">"First names"</string>
-    <string name="data_firstRegistrationDate">"First car registration date"</string>
-    <string name="data_gender">"Gender"</string>
-    <string name="data_lastNames">"Last Names"</string>
-    <string name="data_make">"Make"</string>
-    <string name="data_model">"Model"</string>
-    <string name="data_nationality">"Nationality"</string>
-    <string name="data_personalNumber">"Personal number"</string>
-    <string name="data_registrationNumber">"License plate"</string>
-    <string name="data_vehicleNumber">"Vehicle number"</string>
-    <string name="home_advanced_capture_choose_doc_type">"This example shows you how to use the advanced interaction to customize the UI.
-You must choose a document type here:"</string>
-    <string name="home_advanced_capture_title">"Advanced capture"</string>
-    <string name="home_analyze_content">"This example shows you how to use the analyze API to use an image of an ID you already have on your phone."</string>
-    <string name="home_button">"Give it a try"</string>
     <string name="home_init_failed">"An error occurred during the initialization. Check your connection then press Retry"</string>
-    <string name="home_ips_capture_content">"This sample offers to start an IPS session."</string>
-    <string name="home_ips_capture_title">"IPS Session"</string>
-    <string name="home_loading_text">"Analyze in progress
-Please wait …"</string>
-    <string name="home_online_flow_content">"This example shows you how to easily integrate the SDK into an online flow.
-In this example, our flow includes an ID and a LIVENESS"</string>
-    <string name="home_online_flow_title">"Online flow"</string>
-    <string name="home_presentation">"This is the official sample of the IDCheck.io SDK, a by-product of IDCheck.io produced by Ariadnext. You will find several examples of sdk integration there, you are free to look at the one that best meets your needs.
+    <string name="home_onboarding_button">"Onboarding flow"</string>
+    <string name="home_online_flow_button">"Online flow"</string>
+    <string name="home_presentation">"This is the official sample of the IDCheck.io SDK, a by-product of IDCheck.io produced by IDnow. You will find several examples of sdk integration there, you are free to look at the one that best meets your needs.
 
-Warning, to run this sample you will need a license file, for more information you can contact us at the following address: csm@ariadnext.com"</string>
-    <string name="home_simple_analyze_title">"Analyze"</string>
-    <string name="home_simple_capture_choose_doc_type">"This sample offers the most basic capture.
-You must choose a document type here:"</string>
-    <string name="home_simple_capture_recommended_settings">"The sdk will then be configured with the recommended settings for this type of document."</string>
-    <string name="home_simple_capture_title">"Simple capture"</string>
-    <string name="id_text">"To verify your identity, we will start by scanning your identity card."</string>
-    <string name="ips_info">"Folder UID can be requested to the IPS service. Please contact customer support for more information."</string>
-    <string name="ips_instruction">"Enter your folder UID"</string>
-    <string name="liveness_text">"We will now verify that you are the holder of this identity."</string>
+Warning, to run this sample you will need a license file, for more information you can contact us at the following address: csm@idnow.io"</string>
+    <string name="onboarding_info">"Enter a folder UID. If you are using a certified onboarding, you will need to get the folder UID from our IPS service. Please contact customer support for more information. "</string>
+    <string name="onboarding_instruction">"Enter your folder UID"</string>
     <string name="sdk_error">"An error has occurred. Please look at the logs for more information"</string>
-    <string name="uid_placeholder">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</string>
 </resources>

@@ -7,11 +7,11 @@ plugins {
 android {
     namespace 'com.ariadnext.idcheckio.sdk.sample'
 
-    compileSdkVersion 33
+    compileSdk 34
     defaultConfig {
         applicationId "com.ariadnext.idcheckio.sdk.sample"
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
 
@@ -30,15 +30,16 @@ android {
     }
 
     buildFeatures {
+        buildConfig true
         viewBinding true
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     packagingOptions {
         resources {

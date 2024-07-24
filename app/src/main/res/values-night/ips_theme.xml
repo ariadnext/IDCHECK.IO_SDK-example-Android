@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="ips_foreground_color">@color/idcheckio_sdk_background_color</color>
-    <color name="ips_border_color">@color/idcheckio_sdk_border_color</color>
-    <color name="ips_background_color">@color/idcheckio_sdk_secondary_background_color</color>
-    <color name="ips_primary_color">@color/idcheckio_sdk_primary_color</color>
-    <color name="ips_title_color">@color/idcheckio_sdk_primary_color</color>
-    <color name="ips_text_color">@color/black</color>
-</resources>

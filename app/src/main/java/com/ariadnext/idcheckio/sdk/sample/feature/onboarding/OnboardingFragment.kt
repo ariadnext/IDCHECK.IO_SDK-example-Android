@@ -1,27 +1,28 @@
-package com.ariadnext.idcheckio.sdk.sample.feature.ips
+package com.ariadnext.idcheckio.sdk.sample.feature.onboarding
 
 import android.os.Bundle
 import android.view.View
 import com.ariadnext.idcheckio.sdk.bean.DayNightTheme
-import com.ariadnext.idcheckio.sdk.bean.IpsCustomization
-import com.ariadnext.idcheckio.sdk.bean.Orientation
+import com.ariadnext.idcheckio.sdk.bean.OnboardingCustomization
 import com.ariadnext.idcheckio.sdk.component.Idcheckio
 import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
 import com.ariadnext.idcheckio.sdk.interfaces.InitStatus
-import com.ariadnext.idcheckio.sdk.interfaces.result.ips.IpsResultCallback
+import com.ariadnext.idcheckio.sdk.interfaces.result.ips.OnboardingResultCallback
 import com.ariadnext.idcheckio.sdk.sample.R
-import com.ariadnext.idcheckio.sdk.sample.databinding.FragmentIpsBinding
+import com.ariadnext.idcheckio.sdk.sample.databinding.FragmentOnboardingBinding
 import com.ariadnext.idcheckio.sdk.sample.feature.common.BaseFragment
 import com.ariadnext.idcheckio.sdk.sample.feature.home.HomeFragment
-import com.ariadnext.idcheckio.sdk.sample.utils.ViewUtils.Companion.displayMessage
+import com.ariadnext.idcheckio.sdk.sample.utils.ViewUtils
 
 /**
- * This example shows how to use the IdCheck.io SDK to start an IPS session.
+ * This example shows how to use the IdCheck.io SDK to start an Onboarding session.
+ * You usually doesn't need to create a separate fragment for it.
+ * We dit it just so you can enter a folder UID manually.
  * Before starting this fragment, you need to take a look at how to activate the SDK in the [HomeFragment]
  */
-class IPSSessionFragment : BaseFragment<FragmentIpsBinding>(), IpsResultCallback {
+class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>(), OnboardingResultCallback {
 
-    override val binding by lazy { FragmentIpsBinding.inflate(layoutInflater) }
+    override val binding by lazy { FragmentOnboardingBinding.inflate(layoutInflater) }
 
     ///////////////////////////////////////////////////////////////////////////
     // Lifecycle
@@ -32,29 +33,29 @@ class IPSSessionFragment : BaseFragment<FragmentIpsBinding>(), IpsResultCallback
 
         binding.startIpsSessionButton.setOnClickListener {
             val folderUid = binding.folderUidField.text.toString()
-            // The folder uid is mandatory to start an IPS session.
+            // The folder uid is mandatory to start an Onboarding session.
             if (folderUid.isNotEmpty()) {
-                // Check if the IdCheck.io SDK is correctly initialize before starting an IPS session.
+                // Check if the IdCheck.io SDK is correctly initialize before starting an Onboarding session.
                 when (val initStatus = Idcheckio.initStatus) {
                     InitStatus.SUCCESS,
-                    InitStatus.WAITING_FOR_RESTART -> startIpsSession(folderUid)
-                    else -> displayMessage(requireContext(),"IdCheck.io SDK is not ready. (status=${initStatus.name})")
+                    InitStatus.WAITING_FOR_RESTART -> startOnboardingSession(folderUid)
+                    else -> ViewUtils.displayMessage(requireContext(),"IdCheck.io SDK is not ready. (status=${initStatus.name})")
                 }
             } else {
-                displayMessage(requireContext(),"Folder UID is mandatory.")
+                ViewUtils.displayMessage(requireContext(),"Folder UID is mandatory.")
             }
         }
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // IpsResultCallback implementation
+    // OnboardingResultCallback implementation
     ///////////////////////////////////////////////////////////////////////////
 
-    override fun onIpsSessionSuccess() {
-        displayMessage(requireContext(),"IPS session success !")
+    override fun onSessionSuccess() {
+        ViewUtils.displayMessage(requireContext(),"Onboarding session success !")
     }
 
-    override fun onIpsSessionFailure(errorMsg: ErrorMsg) {
+    override fun onSessionFailure(errorMsg: ErrorMsg) {
         handleErrorMsg(errorMsg)
     }
 
@@ -63,16 +64,16 @@ class IPSSessionFragment : BaseFragment<FragmentIpsBinding>(), IpsResultCallback
     ///////////////////////////////////////////////////////////////////////////
 
     /**
-     * Starts an IPS Session for the given folder UID.
+     * Starts an Onboarding Session for the given folder UID.
      *
      * @param folderUid the folder uid to send
      */
-    private fun startIpsSession(folderUid: String) {
-        Idcheckio.startIps(
+    private fun startOnboardingSession(folderUid: String) {
+        Idcheckio.startOnboarding(
             context = requireContext(),
             folderUid = folderUid,
             resultCallback = this,
-            ipsCustomization = IPS_CUSTOMIZATION
+            onboardingCustomization = ONBOARDING_CUSTOMIZATION
         )
     }
 
@@ -82,23 +83,18 @@ class IPSSessionFragment : BaseFragment<FragmentIpsBinding>(), IpsResultCallback
 
     companion object {
         /**
-         * The IPS session customization object.
+         * The ONBOARDING session customization object.
          */
-        private val IPS_CUSTOMIZATION = IpsCustomization(
-            orientation = Orientation.AUTOMATIC,
+        private val ONBOARDING_CUSTOMIZATION = OnboardingCustomization(
             theme = DayNightTheme(
                 // Color for the main card.
-                R.color.ips_foreground_color,
+                R.color.onboarding_foreground_color,
                 // Color for document mask and animation border.
-                R.color.ips_border_color,
+                R.color.onboarding_border_color,
                 // Color for main background.
-                R.color.ips_background_color,
+                R.color.onboarding_background_color,
                 // Accent color.
-                R.color.ips_primary_color,
-                // Text color for titles.
-                R.color.ips_title_color,
-                // Text color for other text content.
-                R.color.ips_text_color
+                R.color.onboarding_primary_color
             )
         )
     }

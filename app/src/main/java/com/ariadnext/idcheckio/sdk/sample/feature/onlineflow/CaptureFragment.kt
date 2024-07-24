@@ -3,24 +3,20 @@ package com.ariadnext.idcheckio.sdk.sample.feature.onlineflow
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
 import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioInteraction
 import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioInteractionInterface
 import com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult
 import com.ariadnext.idcheckio.sdk.sample.R
-import com.ariadnext.idcheckio.sdk.sample.databinding.FragmentLivenessCaptureBinding
+import com.ariadnext.idcheckio.sdk.sample.databinding.FragmentCaptureBinding
+import com.ariadnext.idcheckio.sdk.sample.feature.bean.SimpleConfig
 import com.ariadnext.idcheckio.sdk.sample.feature.common.BaseFragment
+import com.ariadnext.idcheckio.sdk.sample.utils.ImageUtils
 import com.ariadnext.idcheckio.sdk.sample.utils.SdkConfig
 
-/** This fragment do an online liveness session. */
-class LivenessCaptureFragment : BaseFragment<FragmentLivenessCaptureBinding>(),
-    IdcheckioInteractionInterface {
+class CaptureFragment : BaseFragment<FragmentCaptureBinding>(), IdcheckioInteractionInterface {
 
-    override val binding by lazy { FragmentLivenessCaptureBinding.inflate(layoutInflater) }
-
-    /** This contains the result of the previous scan. */
-    private val args: LivenessCaptureFragmentArgs by navArgs()
+    override val binding by lazy { FragmentCaptureBinding.inflate(layoutInflater) }
 
     ///////////////////////////////////////////////////////////////////////////
     // Lifecycle
@@ -28,20 +24,20 @@ class LivenessCaptureFragment : BaseFragment<FragmentLivenessCaptureBinding>(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val idcheckioView = SdkConfig.setupSdkForLiveness()
+        // You can configure the document you want to capture here, in our case ID.
+        val idcheckioView = SdkConfig.setupSdkByConfig(SimpleConfig.ID)
             // The listener which will receive the SDK interaction (such as result, error, ...).
             .listener(this)
             .build()
 
         // We add the fragment to our view using the child fragment manager and we start it.
-        childFragmentManager
-            .beginTransaction()
-            .replace(R.id.child_container, idcheckioView)
-            .commit()
-
-        // We provide the OnlineContext from previous capture to send the folderUid to the startOnline function.
-        idcheckioView.startOnline(args.result.onlineContext)
-
+        idcheckioView.let {
+            childFragmentManager.beginTransaction().replace(R.id.child_container, it).commit()
+            // If you chain multiple capture, after each capture you need to provide
+            // the online context you receive in the result in the next one.
+            // As we are doing only one capture it is null (It is also null in the first capture of a flow)
+            it.startOnline(null)
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -56,15 +52,14 @@ class LivenessCaptureFragment : BaseFragment<FragmentLivenessCaptureBinding>(),
         when (interaction) {
             /**
              * The result will always be an [IdcheckioResult] object.
-             * It can't be null but it can be empty. In the case of a liveness,
-             * only the 3 following field are available : folderUid, taskUid, documentUid
+             * It can't be null but it can be empty.
+             *
+             * Warning : Between two captures, all the images are cleaned inside the internal SDK cache folder. If
+             * you want to keep the images to show them later in your application, you need to copy them to another location.
              */
             IdcheckioInteraction.RESULT -> (data as IdcheckioResult).let {
-                findNavController().navigate(
-                    LivenessCaptureFragmentDirections.actionLivenessCaptureFragmentToResultFragment(
-                        args.result
-                    )
-                )
+                ImageUtils.moveImages(requireContext(), it)
+                findNavController().navigate(CaptureFragmentDirections.actionCaptureFragmentToResultFragment(it))
             }
             /**
              * You will receive the errors in an [ErrorMsg] object
@@ -72,11 +67,8 @@ class LivenessCaptureFragment : BaseFragment<FragmentLivenessCaptureBinding>(),
              */
             IdcheckioInteraction.ERROR -> {
                 handleErrorMsg(data as ErrorMsg)
-                findNavController().popBackStack()
             }
-            else -> {
-                /* Do nothing */
-            }
+            else -> { /* Do nothing */ }
         }
     }
 }

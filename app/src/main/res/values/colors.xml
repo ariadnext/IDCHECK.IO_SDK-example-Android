@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_color">@color/blue_dark</color>
+    <color name="primary_color">#FFE75C33</color>
     <color name="background_color">@color/white</color>
     <color name="loading_overlay_background">@color/black_74</color>
     <color name="main_text_color">@color/black</color>
     <color name="alt_text_color">@color/gray</color>
 
-    <color name="control_color">@color/blue_dark</color>
+    <color name="control_color">#FFE75C33</color>
     <color name="control_text_color">@color/white</color>
-    <color name="disabled_control_color">@color/blue_moon_raker</color>
+    <color name="disabled_control_color">@color/gray_cc</color>
 
     <!-- White-->
     <color name="white">#FFFFFF</color>
@@ -19,9 +19,6 @@
 
     <!-- Gray-->
     <color name="gray">#888888</color>
-
-    <!-- Blue -->
-    <color name="blue_dark">#0000DE</color>
-    <color name="blue_moon_raker">#CCCCF8</color>
+    <color name="gray_cc">#CCCCCC</color>
 
 </resources>

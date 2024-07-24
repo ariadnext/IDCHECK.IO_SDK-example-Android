@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_color">@color/blue_moon_raker</color>
+    <color name="primary_color">#FFE75C33</color>
     <color name="background_color">@color/black</color>
     <color name="loading_overlay_background">@color/black_74</color>
     <color name="main_text_color">@color/white</color>
     <color name="alt_text_color">@color/gray</color>
 
-    <color name="control_color">@color/blue_moon_raker</color>
+    <color name="control_color">@color/gray_cc</color>
     <color name="control_text_color">@color/black</color>
     <color name="disabled_control_color">@color/white</color>
 </resources>

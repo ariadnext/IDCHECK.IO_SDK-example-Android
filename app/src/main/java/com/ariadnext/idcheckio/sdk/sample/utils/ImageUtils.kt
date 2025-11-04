@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.widget.ImageView
-import com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult
+import com.ariadnext.idcheckio.external.result.online.IdcheckioResult
 import java.io.ByteArrayOutputStream
 import java.io.File
 

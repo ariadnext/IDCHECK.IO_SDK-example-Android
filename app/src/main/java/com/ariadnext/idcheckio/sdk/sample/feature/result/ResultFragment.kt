@@ -4,7 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
-import com.ariadnext.idcheckio.sdk.interfaces.result.ImageResult
+import com.ariadnext.idcheckio.external.result.online.ImageResult
 import com.ariadnext.idcheckio.sdk.sample.databinding.FragmentResultBinding
 import com.ariadnext.idcheckio.sdk.sample.feature.common.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator

@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_result">
         <argument
             android:name="result"
-            app:argType="com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult" />
+            app:argType="com.ariadnext.idcheckio.external.result.online.IdcheckioResult" />
     </fragment>
     <fragment
         android:id="@+id/captureFragment"

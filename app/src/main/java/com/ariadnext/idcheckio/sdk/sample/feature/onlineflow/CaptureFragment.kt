@@ -3,10 +3,10 @@ package com.ariadnext.idcheckio.sdk.sample.feature.onlineflow
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
-import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioInteraction
-import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioInteractionInterface
-import com.ariadnext.idcheckio.sdk.interfaces.result.IdcheckioResult
+import com.ariadnext.idcheckio.external.error.ErrorMsg
+import com.ariadnext.idcheckio.external.result.online.IdcheckioInteraction
+import com.ariadnext.idcheckio.external.result.online.IdcheckioInteractionInterface
+import com.ariadnext.idcheckio.external.result.online.IdcheckioResult
 import com.ariadnext.idcheckio.sdk.sample.R
 import com.ariadnext.idcheckio.sdk.sample.databinding.FragmentCaptureBinding
 import com.ariadnext.idcheckio.sdk.sample.feature.bean.SimpleConfig
@@ -31,13 +31,7 @@ class CaptureFragment : BaseFragment<FragmentCaptureBinding>(), IdcheckioInterac
             .build()
 
         // We add the fragment to our view using the child fragment manager and we start it.
-        idcheckioView.let {
-            childFragmentManager.beginTransaction().replace(R.id.child_container, it).commit()
-            // If you chain multiple capture, after each capture you need to provide
-            // the online context you receive in the result in the next one.
-            // As we are doing only one capture it is null (It is also null in the first capture of a flow)
-            it.startOnline(null)
-        }
+        childFragmentManager.beginTransaction().replace(R.id.child_container, idcheckioView).commit()
     }
 
     ///////////////////////////////////////////////////////////////////////////

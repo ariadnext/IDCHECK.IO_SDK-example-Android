@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
-import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioErrorCause
-import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioSubCause
+import com.ariadnext.idcheckio.external.error.ErrorMsg
+import com.ariadnext.idcheckio.external.error.IdcheckioErrorCause
+import com.ariadnext.idcheckio.external.error.IdcheckioSubCause
 import com.ariadnext.idcheckio.sdk.sample.utils.ViewUtils
 
 /**
@@ -85,6 +85,8 @@ abstract class BaseFragment<FragmentViewBinding : ViewBinding> : Fragment() {
             IdcheckioSubCause.DOC_NOT_USABLE_FACEREC -> displayMessageAndBack(requireContext(), "Error: The document does not contain a face and can't be used for facial recognition.")
             // The document uploaded is not supported.
             IdcheckioSubCause.UNSUPPORTED_FILE_EXTENSION -> displayMessageAndBack(requireContext(), "Error: The provided file format is not supported.")
+            // Wrong id subtype from onboarding authorized document.
+            IdcheckioSubCause.ANALYSE_WRONG_TYPE -> displayMessageAndBack(requireContext(), "Error: The provided document subtype is not accepted.")
             null -> when (errorMsg.cause) {
                 // The customer has made a mistake configuring the SDK (missing licence, invalid parameters...).
                 IdcheckioErrorCause.CUSTOMER_ERROR -> displayMessageAndBack(requireContext(), "Implementation error: ${errorMsg.message}")

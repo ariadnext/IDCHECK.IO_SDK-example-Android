@@ -3,9 +3,9 @@ package com.ariadnext.idcheckio.sdk.sample.feature.home
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.ariadnext.idcheckio.sdk.component.Idcheckio
-import com.ariadnext.idcheckio.sdk.interfaces.ErrorMsg
-import com.ariadnext.idcheckio.sdk.interfaces.IdcheckioCallback
+import com.ariadnext.idcheckio.external.Idcheckio
+import com.ariadnext.idcheckio.external.error.ErrorMsg
+import com.ariadnext.idcheckio.external.result.activation.IdcheckioCallback
 import com.ariadnext.idcheckio.sdk.sample.BuildConfig
 import com.ariadnext.idcheckio.sdk.sample.R
 import com.ariadnext.idcheckio.sdk.sample.databinding.FragmentHomeBinding

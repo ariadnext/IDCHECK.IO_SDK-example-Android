@@ -1,6 +1,9 @@
 ![ARIADNEXT Logo](img/logo.png)
 
-> 💡 For older IDCheck.io Mobile SDK Sample (v7.x.x), please checkout the [sdk_v6](https://github.com/ariadnext/IDCHECK.IO_SDK-example-Android/tree/sdk_v7) branch
+> 💡 For older IDCheck.io Mobile SDK Sample (v8.x.x), please checkout the [sdk_v8](https://github.com/ariadnext/IDCHECK.IO_SDK-example-Android/tree/sdk_v8) branch
+
+> 💡 For older IDCheck.io Mobile SDK Sample (v7.x.x), please checkout the [sdk_v7](https://github.com/ariadnext/IDCHECK.IO_SDK-example-Android/tree/sdk_v7) branch
+
 > 💡 For older IDCheck.io Mobile SDK Sample (v6.x.x), please checkout the [sdk_v6](https://github.com/ariadnext/IDCHECK.IO_SDK-example-Android/tree/sdk_v6) branch
 
 # IDCheck.io Mobile SDK Sample

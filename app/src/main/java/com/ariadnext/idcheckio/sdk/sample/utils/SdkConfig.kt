@@ -1,10 +1,9 @@
 package com.ariadnext.idcheckio.sdk.sample.utils
 
-import com.ariadnext.idcheckio.sdk.bean.ConfirmationType
-import com.ariadnext.idcheckio.sdk.bean.DocumentType
-import com.ariadnext.idcheckio.sdk.bean.OnlineConfig
-import com.ariadnext.idcheckio.sdk.bean.Orientation
-import com.ariadnext.idcheckio.sdk.component.IdcheckioView
+import com.ariadnext.idcheckio.external.IdcheckioView
+import com.ariadnext.idcheckio.external.params.DocumentType
+import com.ariadnext.idcheckio.external.params.OnlineConfig
+import com.ariadnext.idcheckio.external.params.Orientation
 import com.ariadnext.idcheckio.sdk.sample.feature.bean.SimpleConfig
 
 class SdkConfig {
@@ -31,7 +30,6 @@ class SdkConfig {
             return IdcheckioView.Builder()
                 .docType(DocumentType.FRENCH_HEALTH_CARD)
                 .orientation(Orientation.PORTRAIT)
-                .confirmType(ConfirmationType.DATA_OR_PICTURE)
         }
 
         /**
@@ -66,7 +64,6 @@ class SdkConfig {
             return IdcheckioView.Builder()
                 .docType(DocumentType.SELFIE)
                 .orientation(Orientation.PORTRAIT)
-                .confirmType(ConfirmationType.DATA_OR_PICTURE)
         }
 
         /**
@@ -76,7 +73,6 @@ class SdkConfig {
             return IdcheckioView.Builder()
                 .docType(DocumentType.A4)
                 .orientation(Orientation.PORTRAIT)
-                .confirmType(ConfirmationType.DATA_OR_PICTURE)
         }
 
         /**
@@ -86,7 +82,6 @@ class SdkConfig {
             return IdcheckioView.Builder()
                 .docType(DocumentType.PHOTO)
                 .orientation(Orientation.PORTRAIT)
-                .confirmType(ConfirmationType.DATA_OR_PICTURE)
                 .adjustCrop(true)
         }
     }

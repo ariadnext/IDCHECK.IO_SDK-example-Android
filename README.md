@@ -6,7 +6,7 @@
 # IDCheck.io Mobile SDK Sample for Android
 
 [![Platform](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com/)
-[![iOS](https://img.shields.io/badge/API-21-green.svg)](https://developer.android.com/tools/releases/platforms#5.0)
+[![Android](https://img.shields.io/badge/API-21-green.svg)](https://developer.android.com/tools/releases/platforms#5.0)
 
 ## Requirements
 

@@ -6,11 +6,11 @@
 # IDCheck.io Mobile SDK Sample for Android
 
 [![Platform](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com/)
-[![Android](https://img.shields.io/badge/API-21-green.svg)](https://developer.android.com/tools/releases/platforms#5.0)
+[![Android](https://img.shields.io/badge/API-23-green.svg)](https://developer.android.com/tools/releases/platforms#6.0)
 
 ## Requirements
 
-* **Deployment target:** Android 5 (API Level 21) or later.
+* **Deployment target:** Android 6 (API Level 23) or later.
 
 ## Getting Started
 
@@ -30,6 +30,13 @@ repositories {
             password 'YOUR_PASSWORD'
         }
         url "https://repoman.rennes.ariadnext.com/content/repositories/com.ariadnext.idcheckio/"
+    }
+
+    maven {
+        url "https://raw.githubusercontent.com/idnow/idnow-android-sdk/main"
+        content {
+            includeGroupByRegex("io\\.idnow.*")
+        }
     }
 }
 ```
@@ -83,8 +90,7 @@ To start an onboarding you just need to call the startOnboarding method on the I
 Idcheckio.startOnboarding(context: Context, folderUid: String, resultCallback: OnboardingResultCallback)
 ```
 
-#### Use Online Mode (Deprecated)
-> This mode will be deprecated in a future version.
+#### Use Online Mode (Alternative)
 
 It’s not recommended to use this mode except if you are already using it or if you have special needs that can not be achieved with the dynamic onboarding. Before using this integration mode speak about your issues with your CSM.
 

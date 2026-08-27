@@ -10,7 +10,7 @@ android {
     compileSdk 35
     defaultConfig {
         applicationId "com.ariadnext.idcheckio.sdk.sample"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 35
         versionCode 1
         versionName "1.0"
